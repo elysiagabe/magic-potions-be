@@ -71,5 +71,5 @@ function updateOrderStatus(orderId, fulfilled) {
     return db('orders')
     .where('id', orderId)
     .update('fulfilled', fulfilled)
-    .returning('id)
+    .returning('id')
 }
