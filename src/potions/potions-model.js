@@ -70,5 +70,5 @@ function deleteOrder(orderId) {
 function updateOrderStatus(orderId, fulfilled) {
     return db('orders')
     .where({ id: orderId})
-    .update({ fulfilled: fulfilled }, ['id'])
+    .update('fulfilled', fulfilled)
 }
