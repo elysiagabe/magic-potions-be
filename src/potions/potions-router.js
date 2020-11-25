@@ -95,7 +95,7 @@ router.post('/', validatePayment, validateAddress, validateCustomerInfo, validat
 
         let customer = await Potions.addCustomer(newCustomer).catch(err => { error = err })
 
-        let newOrder = { quantity, total, customerID: customer[0]}
+        let newOrder = { quantity, total, customerID: customer[0], orderDate: new Date(), fulfilled: false}
 
         let order = await Potions.addOrder(newOrder).catch(err => {
             error = err
@@ -167,8 +167,6 @@ function validateOrderInfo(req, res, next) {
         res.status(400).json({ message: "Misisng order information" })
     } else if (quantityType !== "number" || req.body.quantity < 1 || req.body.quantity > 3) {
         res.status(400).json({ message: "Invalid order quantity" })
-    } else if (req.body.total.length < 1) {
-        res.status(400).json({ message: "Invalid order total" })
     } else {
         next()
     }
