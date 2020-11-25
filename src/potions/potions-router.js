@@ -57,7 +57,7 @@ router.patch('/', (req, res) => {
 
     Potions.updateOrderStatus(id, fulfilled)
     .then(count => {
-        if (count > 0) {
+        if (count.length > 0) {
             res.status(200).json({ message: 'resource updated successfully' })
         } else {
             res.status(404).json({ message: 'resource not found' })
