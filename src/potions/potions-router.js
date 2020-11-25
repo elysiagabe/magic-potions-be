@@ -167,7 +167,7 @@ function validateOrderInfo(req, res, next) {
         res.status(400).json({ message: "Misisng order information" })
     } else if (quantityType !== "number" || req.body.quantity < 1 || req.body.quantity > 3) {
         res.status(400).json({ message: "Invalid order quantity" })
-    } else if (req.body.total !== "49.99" || req.body.total !== "99.98" || req.body.total !== "149.97") {
+    } else if (req.body.total.length < 1) {
         res.status(400).json({ message: "Invalid order total" })
     } else {
         next()
